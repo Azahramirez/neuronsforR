@@ -14,6 +14,19 @@ knitr::opts_chunk$set(
 )
 ```
 
+# Example of using the neuronsforR function 'suma'
+
 ```{r setup}
 library(neuronsforR)
 ```
+
+```{r}
+# Load the data
+# a and b can be any number(int or float)
+a=1
+b=2
+suma(a,b)
+
+
+```
+
