@@ -1,17 +1,16 @@
-
 #' Title of the function
 #'
 #' Description of what the function does.
 #'
 #' @param x Description of parameter x
 #' @param y Description of parameter y
-#' @return What the function returns
+#' @return subtraction of x minus y
 #' @examples
-#' my_function(1, 2)
+#' resta(1, 2)
 #' @export
 
-#Generate a function that takes two arguments and returns their sum
-suma = function(a,b){
-  return(a+b)
+resta = function(a,b){
+  #a is number
+  #b is another number
+  return(a-b)
 }
-
