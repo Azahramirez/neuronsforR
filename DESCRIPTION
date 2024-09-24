@@ -7,6 +7,7 @@ Maintainer: <azaramirez@somewhere.net>
 Description: This package sums numbers
     In the future it will be a simplified version to run
     neural networks.
+    To see a running example follow this link (https://azahramirez.github.io/testShiny/)
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
