@@ -1,6 +1,12 @@
 
 
 library(shiny)
+library(bslib)
+#library(DT)
+#library(palmerpenguins)
+#
+a=read.csv("data/Virtual_Reality_in_Education_Impact.csv")
+
 # Function to multiply the first column of a data frame by 100
 m1c <- function(df,n) {
   n=as.integer(n)
@@ -19,7 +25,7 @@ m1c <- function(df,n) {
 ui <- fluidPage(
 
   # App title ----
-  titlePanel("Test for different variables inputs"),
+  titlePanel("Test for different variables INPUTSSD"),
 
   # Sidebar layout with input and output definitions ----
   sidebarLayout(
@@ -75,6 +81,8 @@ ui <- fluidPage(
       # Output: HTML table with requested number of observations ----
       tableOutput("view"),
 
+      tableOutput("table"),
+
 
 
       # Table output to display the contents of the uploaded file
@@ -102,7 +110,7 @@ server <- function(input, output) {
 
   })
 
-#
+  #
 
 
   output$file1_contents <- renderPrint({print(input$file1)})
@@ -142,6 +150,8 @@ server <- function(input, output) {
 
   })
 
+  output$table <-renderTable({a})
+
   # Show the first "n" observations ----
   # The output$view depends on both the databaseInput reactive
   # expression and input$obs, so it will be re-executed whenever
@@ -154,5 +164,7 @@ server <- function(input, output) {
 
 # Create Shiny app ----
 shinyApp(ui, server)
+
+
 
 
