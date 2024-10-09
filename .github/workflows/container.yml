@@ -1,25 +1,30 @@
-name: Build and Run Apptainer (Manual Trigger)
+name: Build and Run Apptainer
 
-# The 'workflow_dispatch' event allows manual triggering from GitHub UI
 on:
-  workflow_dispatch:  # Manually trigger the workflow
+  workflow_dispatch:  # Allows manual triggering
+
 
 jobs:
-  apptainer-build:
-    runs-on: ubuntu-20.04  # Specify the environment to run on
+  apptainer:
+    runs-on: ubuntu-20.04  # Set the GitHub Actions runner to Ubuntu 20.04
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Install Apptainer
         run: |
           sudo apt-get update
-          sudo apt-get install -y apptainer
+          sudo apt-get install -y build-essential squashfs-tools cryptsetup
+          git clone https://github.com/apptainer/apptainer.git
+          cd apptainer
+          make -C builddir
+          sudo make -C builddir install
 
       - name: Build Apptainer container
         run: apptainer build my_container.sif Buildfile
 
       - name: Run Apptainer container
         run: apptainer exec my_container.sif python3 --version
+
 
