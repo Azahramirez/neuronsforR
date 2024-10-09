@@ -1,0 +1,25 @@
+name: Build and Run Apptainer (Manual Trigger)
+
+# The 'workflow_dispatch' event allows manual triggering from GitHub UI
+on:
+  workflow_dispatch:  # Manually trigger the workflow
+
+jobs:
+  apptainer-build:
+    runs-on: ubuntu-20.04  # Specify the environment to run on
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Apptainer
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y apptainer
+
+      - name: Build Apptainer container
+        run: apptainer build my_container.sif Buildfile
+
+      - name: Run Apptainer container
+        run: apptainer exec my_container.sif python3 --version
+
